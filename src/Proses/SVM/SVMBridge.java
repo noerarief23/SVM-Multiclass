@@ -24,6 +24,9 @@ public class SVMBridge {
     //struktur data untuk visualisai
     private ArrayList<String> kataCS;
     private ArrayList<String> kataIS;
+    
+    private ArrayList<String> kataIT;
+    private ArrayList<String> kataSE;
     //model svm
     Kernel SVMmodel;
     Proses.SVM.SVM smoSimple;
@@ -95,21 +98,56 @@ public class SVMBridge {
     private void listKata(){
         kataCS = new ArrayList<String>();
         kataIS = new ArrayList<String>();
+        kataIT = new ArrayList<String>();
+        kataSE = new ArrayList<String>();
         for(String kt : kata.keySet()){
             double csFrek=0;
             double isFrek=0;
+            double itFrek=0;
+            double seFrek=0;
             for(Abstrak bb : kata.get(kt)){
                 if(bb.getId()==0)
                     continue;
                 if(bb.getkelas().equalsIgnoreCase("IS"))
                     isFrek+=bb.getBobot().get(kt);
                 else
+                if(bb.getkelas().equalsIgnoreCase("CS"))
                     csFrek+=bb.getBobot().get(kt);
+                else
+                if(bb.getkelas().equalsIgnoreCase("IT"))
+                    itFrek+=bb.getBobot().get(kt);
+                else
+                if(bb.getkelas().equalsIgnoreCase("SE"))
+                    seFrek+=bb.getBobot().get(kt);
             }
             if(csFrek<isFrek)
                 kataIS.add(kt);
             else if(csFrek>isFrek)
                 kataCS.add(kt);
+            if(csFrek<itFrek)
+                kataIT.add(kt);
+            else if(csFrek>itFrek)
+                kataCS.add(kt);
+            
+            //lse if(csFrek<seFrek)
+             //   kataSE.add(kt);
+            //else if(csFrek>seFrek)
+             //   kataCS.add(kt);
+            
+            if(isFrek<itFrek)
+                kataIT.add(kt);
+            else if(isFrek>itFrek)
+                kataIS.add(kt);
+            /*
+            else if(isFrek<seFrek)
+                kataSE.add(kt);
+            else if(isFrek>seFrek)
+                kataIS.add(kt);
+            
+            else if(itFrek<seFrek)
+                kataSE.add(kt);
+            else if(itFrek>seFrek)
+                kataIT.add(kt);*/
         }
     }
     public int countKelasIS(){
@@ -128,17 +166,26 @@ public class SVMBridge {
     }
     public double[][][] getXYDataTraing(){
         listKata();
-        double bb [][][] = new double [2][][];
-        double [][]is = new double[countKelasIS()][2];
-        double [][]cs = new double[abstrak.size()-is.length][2];
+        double bb [][][] = new double [5][][];
+        double [][]is = new double[countKelasIS()][5];
+        double [][]cs = new double[abstrak.size()-is.length][5];
+        double [][]it = new double[abstrak.size()-cs.length][5];
+        double [][]se = new double[abstrak.size()-it.length][5];
+  
         int k=0;
         int m=0;
+        int n=0;
+        int o=0;
         for(int i=0;i<abstrak.size();i++){
             if(abstrak.get(i).getkelas().equalsIgnoreCase("IS")){
                 for(String kt : kataIS)
                     is[k][0]+=abstrak.get(i).bobot(kt);
                 for(String kt : kataCS)
                     is[k][1]+=abstrak.get(i).bobot(kt);
+                for(String kt : kataIT)
+                    is[k][2]+=abstrak.get(i).bobot(kt);
+                for(String kt : kataSE)
+                    is[k][3]+=abstrak.get(i).bobot(kt);
                 k++;
             }
             else if (abstrak.get(i).getkelas().equalsIgnoreCase("CS")){
@@ -146,11 +193,37 @@ public class SVMBridge {
                     cs[m][0]+=abstrak.get(i).bobot(kt);
                 for(String kt : kataCS)
                     cs[m][1]+=abstrak.get(i).bobot(kt);
+                for(String kt : kataIT)
+                    cs[m][2]+=abstrak.get(i).bobot(kt);
+                for(String kt : kataSE)
+                    cs[m][3]+=abstrak.get(i).bobot(kt);
                 m++;
+            }else if (abstrak.get(i).getkelas().equalsIgnoreCase("IT")){
+                for(String kt : kataIS)
+                    it[n][0]+=abstrak.get(i).bobot(kt);
+                for(String kt : kataCS)
+                    it[n][1]+=abstrak.get(i).bobot(kt);
+                for(String kt : kataIT)
+                    it[n][2]+=abstrak.get(i).bobot(kt);
+                for(String kt : kataSE)
+                    it[n][3]+=abstrak.get(i).bobot(kt);
+                n++;
+            }else if (abstrak.get(i).getkelas().equalsIgnoreCase("SE")){
+                for(String kt : kataIS)
+                    se[o][0]+=abstrak.get(i).bobot(kt);
+                for(String kt : kataCS)
+                    se[o][1]+=abstrak.get(i).bobot(kt);
+                for(String kt : kataIT)
+                    se[o][2]+=abstrak.get(i).bobot(kt);
+                for(String kt : kataSE)
+                    se[o][3]+=abstrak.get(i).bobot(kt);
+                o++;
             }
         }
         bb[0]=is;
         bb[1]=cs;
+        bb[2]=it;
+        bb[3]=se;
         return bb;
     }
     public ArrayList<double []> getXYLineHiperplane(double [][][] training){
@@ -237,6 +310,9 @@ public class SVMBridge {
                 vector[getIndexKata(kata)-1] = se.bobot(kata);
             }
             if(abstrak.get(i).getkelas().equalsIgnoreCase("IS"))
+                SVMmodel.addData(vector, 1);
+            else
+            if(abstrak.get(i).getkelas().equalsIgnoreCase("CS"))
                 SVMmodel.addData(vector, 1);
             else
                 SVMmodel.addData(vector, -1);
@@ -326,7 +402,14 @@ public class SVMBridge {
             if(kataCS.contains(kt))
                 row.add("CS");
             else
+            if(kataIS.contains(kt))
                 row.add("IS");
+            else
+            if(kataIT.contains(kt))
+                row.add("IT");
+            else
+                row.add("SE");
+            
             vector.add(row);
         }
         return vector;

@@ -135,6 +135,10 @@ public class MainFrame extends javax.swing.JFrame {
         XYSeries dataset2 = new XYSeries("CS");
         for(int i=0;i<xyTrainig[1].length;i++)
             dataset2.add(xyTrainig[1][i][0], xyTrainig[1][i][1]);
+        //XYSeries dataset6 = new XYSeries("IT");
+        //for(int i=0;i<xyTrainig[1].length;i++)
+        //    dataset6.add(xyTrainig[1][i][0], xyTrainig[1][i][1]);
+        
         XYSeries dataset4 = new XYSeries("hiperplane");
         for(int i=0;i<xyHiperplane.size();i++)
             dataset4.add(xyHiperplane.get(i)[0],xyHiperplane.get(i)[1]);
@@ -153,6 +157,8 @@ public class MainFrame extends javax.swing.JFrame {
         dataset.addSeries(dataset4);
         dataset.addSeries(dataset3);
         dataset.addSeries(dataset5);
+        
+        //dataset.addSeries(dataset6);
         JFreeChart chart = ChartFactory.createXYLineChart("Visualisasi Data","IS","CS", dataset, PlotOrientation.VERTICAL, true, true, false);
         final XYPlot plot = chart.getXYPlot();
         plot.setWeight(20);
@@ -162,6 +168,7 @@ public class MainFrame extends javax.swing.JFrame {
         renderer.setSeriesShapesVisible(2, false);
         renderer.setSeriesLinesVisible(3, false);
         renderer.setSeriesLinesVisible(4, false);
+        //renderer.setSeriesLinesVisible(5, false);
         plot.setRenderer(renderer);
         
         ChartPanel chartPanel = new ChartPanel(chart);
@@ -217,7 +224,7 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SVM Classification V.2.3");
+        setTitle("SVM Classification V.2.8 BETA");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -626,10 +633,10 @@ public class MainFrame extends javax.swing.JFrame {
             row.add(hasil[i]);
             if(hasil[i].trim().equalsIgnoreCase(steaming[i][1].trim())){
                 benar+=1;
-                if(hasil[i].trim().equalsIgnoreCase("IS"))
-                    TP++;
-                if(hasil[i].trim().equalsIgnoreCase("CS"))
-                    TN++;
+                //if(hasil[i].trim().equalsIgnoreCase("IS"))
+                  //  TP++;
+                //if(hasil[i].trim().equalsIgnoreCase("CS"))
+                  //  TN++;
             }
             if("IS".equalsIgnoreCase(steaming[i][1].trim()))
                 is++;
