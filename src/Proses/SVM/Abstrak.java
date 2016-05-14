@@ -92,14 +92,14 @@ public class Abstrak {
         row.add(id);
         row.add(dokumen);
         row.add(stemming);
-        row.add(berimbuhan);
-        row.add(mengadungAngka);
+        //row.add(berimbuhan);
+        //row.add(mengadungAngka);
         int jumlah = 0;
         for(int i=0;i<mengadungAngka.length();i++){
             if(mengadungAngka.charAt(i)>='0'&&mengadungAngka.charAt(i)<='9')
                 jumlah++;
         }
-        row.add(jumlah);
+        //row.add(jumlah);
         row.add(kelas);
         return row;
     }

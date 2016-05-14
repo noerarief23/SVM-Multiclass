@@ -16,7 +16,7 @@ import java.util.Vector;
  * @author Administrator
  */
 public class SVMBridge {
-    //struktur data untuk Abstrak message
+    //struktur data untuk Abstrak 
     private ArrayList<Abstrak> abstrak;
     private ArrayList<Abstrak> abstrakTesting;
     private HashMap<String,ArrayList<Abstrak>> kata;
