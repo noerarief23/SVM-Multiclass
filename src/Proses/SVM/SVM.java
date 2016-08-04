@@ -10,7 +10,7 @@ package Proses.SVM;
  */
 public class SVM {
     /** Trained/loaded model */
-    private double C = 100;
+    private double C = 10000;
     /** kernel yang digunakan */
     private int kernel;
     /** Tolerance */
@@ -18,7 +18,7 @@ public class SVM {
     /** Tolerance */
     private double tol2 = 10e-5;
     /** variabel training */
-    private int maxpass = 10;
+    private int maxpass = 100;
     private double Ei, Ej;
     private double ai_old, aj_old, b_old;
     private double L, H;
