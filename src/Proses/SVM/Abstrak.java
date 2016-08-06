@@ -13,31 +13,33 @@ import java.util.HashMap;
  */
 public class Abstrak {
     private int id;
-    private HashMap<String,Integer>frekKata = new HashMap<String,Integer>();
-    private HashMap<String,Double>bobotKata = new HashMap<String,Double>();
+    private HashMap<String,Integer> frekKata = new HashMap<String,Integer>();
+    private HashMap<String,Double> bobotKata = new HashMap<String,Double>();
     String stemming;
     private String dokumen;
     private String berimbuhan;
     private String mengadungAngka;
     private String kelas;
     
-    public Abstrak(int in,String d,String s,String k,String ber, String mengK){ 
-        dokumen = d;
-        stemming=s;
-        kelas=k;
-        id=in;
-        berimbuhan= ber;
-        mengadungAngka = mengK;
+    public Abstrak(int _id,String _dokumen,String _steming,String _kelas,String _berimbuhan, String _mengadungAngka){ 
+        dokumen = _dokumen;
+        stemming = _steming;
+        kelas = _kelas;
+        id = _id;
+        berimbuhan = _berimbuhan;
+        mengadungAngka = _mengadungAngka;
         String kata[] = stemming.split(" ");
-        for(String i : kata){
-            if(!frekKata.containsKey(i))
-                frekKata.put(i,0);
-            int count = frekKata.get(i);
-            frekKata.remove(i);
-            frekKata.put(i, count+1);
+        
+        for(String _kata : kata){
+            if(!frekKata.containsKey(_kata))
+                frekKata.put(_kata,0);
+            int count = frekKata.get(_kata);
+            frekKata.remove(_kata);
+            frekKata.put(_kata, count+1);
         }
+        
         for(String i : frekKata.keySet()){
-            bobotKata.put(i, 1+Math.log10(frekKata.get(i)));
+            bobotKata.put(i, 1 + Math.log10(frekKata.get(i)));
         }
     }
     public int getId(){

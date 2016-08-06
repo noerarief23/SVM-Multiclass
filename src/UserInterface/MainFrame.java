@@ -129,19 +129,30 @@ public class MainFrame extends javax.swing.JFrame {
             }
     }
     public void loadVisualDocument(){
-        XYSeries dataset1 = new XYSeries("IS");
+        XYSeries dataset1 = new XYSeries("A");
         for(int i=0;i<xyTrainig[0].length;i++)
             dataset1.add(xyTrainig[0][i][0], xyTrainig[0][i][1]);
-        XYSeries dataset2 = new XYSeries("CS");
+        
+        XYSeries dataset2 = new XYSeries("B");
         for(int i=0;i<xyTrainig[1].length;i++)
             dataset2.add(xyTrainig[1][i][0], xyTrainig[1][i][1]);
-        //XYSeries dataset6 = new XYSeries("IT");
-        //for(int i=0;i<xyTrainig[1].length;i++)
-        //    dataset6.add(xyTrainig[1][i][0], xyTrainig[1][i][1]);
         
-        XYSeries dataset4 = new XYSeries("hiperplane");
+        XYSeries dataset6 = new XYSeries("C");
+        for(int i=0;i<xyTrainig[2].length;i++)
+            dataset6.add(xyTrainig[2][i][0], xyTrainig[2][i][1]);
+        
+        XYSeries dataset7 = new XYSeries("D");
+        for(int i=0;i<xyTrainig[3].length;i++)
+            dataset7.add(xyTrainig[3][i][0], xyTrainig[3][i][1]);
+        
+        XYSeries dataset8 = new XYSeries("E");
+        for(int i=0;i<xyTrainig[4].length;i++)
+            dataset8.add(xyTrainig[4][i][0], xyTrainig[4][i][1]);
+        
+        XYSeries dataset4 = new XYSeries("hyperplane");
         for(int i=0;i<xyHiperplane.size();i++)
             dataset4.add(xyHiperplane.get(i)[0],xyHiperplane.get(i)[1]);
+        
         //data testing
         double dataTesting [][][] = svm.getXYDataTesting();
         XYSeries dataset3 = new XYSeries("DataTesting 1");
@@ -155,20 +166,24 @@ public class MainFrame extends javax.swing.JFrame {
         dataset.addSeries(dataset1);
         dataset.addSeries(dataset2);
         dataset.addSeries(dataset4);
+        dataset.addSeries(dataset6);
+        dataset.addSeries(dataset7);
+        dataset.addSeries(dataset8);
         dataset.addSeries(dataset3);
         dataset.addSeries(dataset5);
-        
-        //dataset.addSeries(dataset6);
-        JFreeChart chart = ChartFactory.createXYLineChart("Visualisasi Data","IS","CS", dataset, PlotOrientation.VERTICAL, true, true, false);
+        JFreeChart chart = ChartFactory.createXYLineChart("Visualisasi Data","A","B", dataset, PlotOrientation.VERTICAL, true, true, false);
         final XYPlot plot = chart.getXYPlot();
-        plot.setWeight(20);
+        plot.setWeight(40);
         final XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
         renderer.setSeriesLinesVisible(0, false);
         renderer.setSeriesLinesVisible(1, false);
         renderer.setSeriesShapesVisible(2, false);
         renderer.setSeriesLinesVisible(3, false);
         renderer.setSeriesLinesVisible(4, false);
-        //renderer.setSeriesLinesVisible(5, false);
+        renderer.setSeriesLinesVisible(5, false);
+        
+        renderer.setSeriesLinesVisible(6, false);
+        renderer.setSeriesLinesVisible(7, false);
         plot.setRenderer(renderer);
         
         ChartPanel chartPanel = new ChartPanel(chart);
@@ -197,7 +212,6 @@ public class MainFrame extends javax.swing.JFrame {
         tableTestingSVM = new javax.swing.JTable();
         ButtonTestingData = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -218,6 +232,7 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         Visualisasi2D = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jFileChooser1.setFileFilter(new javax.swing.filechooser.FileFilter() {
             public boolean accept(File f){
@@ -304,7 +319,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jLabel4))
                     .addComponent(jSeparator2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 447, Short.MAX_VALUE)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -347,29 +362,21 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(ButtonTestingData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
                 .addContainerGap())
         );
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AjaxLoader.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
         jPanel13.setLayout(jPanel13Layout);
         jPanel13Layout.setHorizontalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
         );
         jPanel13Layout.setVerticalGroup(
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(60, 60, 60))
         );
 
         jTabbedPane2.addTab("Data Testing", jPanel13);
@@ -399,7 +406,7 @@ public class MainFrame extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -490,7 +497,7 @@ public class MainFrame extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Visualisasi2D, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
+                .addComponent(Visualisasi2D, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -517,12 +524,18 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("pada Klasifikasi Laporan Skripsi Prodi Teknik Informatika Unikom");
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/AjaxLoader.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane2)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addContainerGap())
             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -530,7 +543,9 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addGap(5, 5, 5)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane2))
         );
@@ -601,7 +616,7 @@ public class MainFrame extends javax.swing.JFrame {
         int i = JOptionPane.showConfirmDialog(this, "anda yakin hapus training no"+id, "confirmasi", JOptionPane.INFORMATION_MESSAGE);
         if(i==0)
         try {
-            sql.updateTable("delete from abstrak where no="+id);
+            sql.updateTable("delete from abstrak where No="+id);
             LoadDataFromSQL();
             xyTrainig=svm.getXYDataTraing();
             xyHiperplane=svm.getXYLineHiperplane(xyTrainig);
@@ -661,7 +676,7 @@ public class MainFrame extends javax.swing.JFrame {
         xyHiperplane=svm.getXYLineHiperplane(xyTrainig);
         loadVisualDocument();
     }
-        private Vector setTesting(File data){
+    private Vector setTesting(File data){
         String kontent = pre.getContent(data);
         String stemming = pre.getStemmingTxt(data);
         Abstrak testing = new Abstrak(0, kontent, stemming,PreProcessing.getKataBerimbuhan(kontent, stemming),PreProcessing.getKataMangandungAngka(kontent),"??");
@@ -683,10 +698,11 @@ public class MainFrame extends javax.swing.JFrame {
         String [][] steaming = pre.getStemmingXls(data);
         Abstrak testing []= new Abstrak[steaming.length];
         Vector testingTable = new Vector();
+        
         for(int i=0;i<steaming.length;i++){
             String kontent = steaming[i][2];
             String stemming = steaming[i][0];            
-            testing[i] =new Abstrak(0-i, kontent,stemming, steaming[i][1],PreProcessing.getKataBerimbuhan(kontent, stemming),PreProcessing.getKataMangandungAngka(kontent));
+            testing[i] = new Abstrak(i+1, kontent,stemming, steaming[i][1],PreProcessing.getKataBerimbuhan(kontent, stemming),PreProcessing.getKataMangandungAngka(kontent));
             
             Vector row = new Vector();
             row.add(testing[i].getId());
@@ -694,38 +710,25 @@ public class MainFrame extends javax.swing.JFrame {
             row.add(stemming);
             testingTable.add(row);
         }
+        
         String [] hasil = new String [testing.length];
         double benar = 0;
         svm.svmTraining();
-        double TP=0;
-        double TN=0;
-        double cs=0;
-        double is=0;
+        
         for(int i=0;i<steaming.length;i++){
             testing[i]=svm.addTesting(testing[i]);
             hasil[i] = svm.svmTesting(testing[i]);
             Vector row = (Vector)testingTable.get(i);
             row.add(steaming[i][1]);
             row.add(hasil[i]);
-            if(hasil[i].trim().equalsIgnoreCase(steaming[i][1].trim())){
+            if(hasil[i].trim().equalsIgnoreCase("A")){
                 benar+=1;
-                //if(hasil[i].trim().equalsIgnoreCase("IS"))
-                  //  TP++;
-                //if(hasil[i].trim().equalsIgnoreCase("CS"))
-                  //  TN++;
             }
-            if("IS".equalsIgnoreCase(steaming[i][1].trim()))
-                is++;
-            else
-                cs++;
         }
         BigDecimal predict = new BigDecimal((benar/steaming.length)*100).setScale(3, RoundingMode.HALF_EVEN);
-        //double presisi = TP/is;
-        //double recall = TP/(TP+cs-TN);
-        //double fmeasure = (2*presisi*recall)/(presisi+recall);
-        //double specifity = TN/(TN+is-TP);
-        Akurasi.setText(predict+" %");                                              
-       return testingTable;
+        
+        Akurasi.setText(predict+" %");
+        return testingTable;
     }    
 
     public static void main(String args[]) {

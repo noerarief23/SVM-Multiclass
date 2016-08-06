@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="SVM_Clasification_v.2.8_BETA" default="default" basedir=".">
-    <description>Builds, tests, and runs the project SVM Clasification v.2.8 BETA.</description>
+<project name="SVM_Clasification_v.3.1_BETA" default="default" basedir=".">
+    <description>Builds, tests, and runs the project SVM Clasification v.3.1 BETA.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
@@ -58,7 +58,7 @@
 
     An example of overriding the target for project execution could look like this:
 
-        <target name="run" depends="SVM_Clasification_v.2.8_BETA-impl.jar">
+        <target name="run" depends="SVM_Clasification_v.3.1_BETA-impl.jar">
             <exec dir="bin" executable="launcher.exe">
                 <arg file="${dist.jar}"/>
             </exec>

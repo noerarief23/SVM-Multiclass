@@ -18,10 +18,12 @@ public class Kernel {
     public double Penambah;
     public double Pangkat;
     int counterData=0;
+    
     public Kernel(int l){
         x = new Data[l];
     }
     public void addData (double [] vector, int target){
+        System.out.println(counterData);
         x[counterData] = new Data(target,vector);
         counterData++;
     }
