@@ -11,21 +11,13 @@ package Proses.SVM;
 public class SVM {
     /** Trained/loaded model */
     private double C = 10000;
-<<<<<<< HEAD
-    /* kernel yang digunakan */
-=======
     /** kernel yang digunakan */
->>>>>>> origin/master
     private int kernel;
     /** Tolerance */
     private double tol = 10e-3;
     /** Tolerance */
     private double tol2 = 10e-5;
-<<<<<<< HEAD
     /* variabel training */
-=======
-    /** variabel training */
->>>>>>> origin/master
     private int maxpass = 100;
     private double Ei, Ej;
     private double ai_old, aj_old, b_old;

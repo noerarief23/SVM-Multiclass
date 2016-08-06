@@ -132,17 +132,13 @@ public class MainFrame extends javax.swing.JFrame {
         XYSeries dataset1 = new XYSeries("A");
         for(int i=0;i<xyTrainig[0].length;i++)
             dataset1.add(xyTrainig[0][i][0], xyTrainig[0][i][1]);
-<<<<<<< HEAD
         
-=======
->>>>>>> origin/master
         XYSeries dataset2 = new XYSeries("B");
         for(int i=0;i<xyTrainig[1].length;i++)
             dataset2.add(xyTrainig[1][i][0], xyTrainig[1][i][1]);
         
         XYSeries dataset6 = new XYSeries("C");
         for(int i=0;i<xyTrainig[2].length;i++)
-<<<<<<< HEAD
             dataset6.add(xyTrainig[2][i][0], xyTrainig[2][i][1]);
         
         XYSeries dataset7 = new XYSeries("D");
@@ -152,38 +148,11 @@ public class MainFrame extends javax.swing.JFrame {
         XYSeries dataset8 = new XYSeries("E");
         for(int i=0;i<xyTrainig[4].length;i++)
             dataset8.add(xyTrainig[4][i][0], xyTrainig[4][i][1]);
-=======
-            dataset6.add(xyTrainig[1][i][0], xyTrainig[0][i][1]);
-        
-        XYSeries dataset7 = new XYSeries("D");
-        for(int i=0;i<xyTrainig[2].length;i++)
-            dataset7.add(xyTrainig[0][i][0], xyTrainig[1][i][1]);
-        
-        XYSeries dataset8 = new XYSeries("E");
-        for(int i=0;i<xyTrainig[2].length;i++)
-            dataset7.add(xyTrainig[0][i][0], xyTrainig[1][i][1]);
->>>>>>> origin/master
         
         XYSeries dataset4 = new XYSeries("hyperplane");
         for(int i=0;i<xyHiperplane.size();i++)
             dataset4.add(xyHiperplane.get(i)[0],xyHiperplane.get(i)[1]);
-<<<<<<< HEAD
         
-=======
-        /*
-        XYSeries dataset8 = new XYSeries("hyperplane2");
-        for(int i=0;i<xyHiperplane.size();i++)
-            dataset8.add(xyHiperplane.get(i)[1],xyHiperplane.get(i)[1]);
-        
-        XYSeries dataset9 = new XYSeries("hyperplane3");
-        for(int i=0;i<xyHiperplane.size();i++)
-            dataset9.add(xyHiperplane.get(i)[1],xyHiperplane.get(i)[0]);
-        
-        XYSeries dataset10 = new XYSeries("hyperplane4");
-        for(int i=0;i<xyHiperplane.size();i++)
-            dataset10.add(xyHiperplane.get(i)[0],xyHiperplane.get(i)[0]);
-        */
->>>>>>> origin/master
         //data testing
         double dataTesting [][][] = svm.getXYDataTesting();
         XYSeries dataset3 = new XYSeries("DataTesting 1");
@@ -199,19 +168,10 @@ public class MainFrame extends javax.swing.JFrame {
         dataset.addSeries(dataset4);
         dataset.addSeries(dataset6);
         dataset.addSeries(dataset7);
-<<<<<<< HEAD
         dataset.addSeries(dataset8);
         dataset.addSeries(dataset3);
         dataset.addSeries(dataset5);
         JFreeChart chart = ChartFactory.createXYLineChart("Visualisasi Data","A","B", dataset, PlotOrientation.VERTICAL, true, true, false);
-=======
-        dataset.addSeries(dataset3);
-        dataset.addSeries(dataset5);
-        dataset.addSeries(dataset8);
-        //dataset.addSeries(dataset9);
-        //dataset.addSeries(dataset10);
-        JFreeChart chart = ChartFactory.createXYLineChart("Visualisasi Data","IS","CS", dataset, PlotOrientation.VERTICAL, true, true, false);
->>>>>>> origin/master
         final XYPlot plot = chart.getXYPlot();
         plot.setWeight(40);
         final XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
@@ -223,15 +183,7 @@ public class MainFrame extends javax.swing.JFrame {
         renderer.setSeriesLinesVisible(5, false);
         
         renderer.setSeriesLinesVisible(6, false);
-<<<<<<< HEAD
         renderer.setSeriesLinesVisible(7, false);
-=======
-        
-        renderer.setSeriesLinesVisible(7, false);
-        
-        //renderer.setSeriesLinesVisible(8, false);
-        //renderer.setSeriesLinesVisible(9, false);
->>>>>>> origin/master
         plot.setRenderer(renderer);
         
         ChartPanel chartPanel = new ChartPanel(chart);
@@ -762,14 +714,7 @@ public class MainFrame extends javax.swing.JFrame {
         String [] hasil = new String [testing.length];
         double benar = 0;
         svm.svmTraining();
-<<<<<<< HEAD
         
-=======
-        double TP=0;
-        double TN=0;
-        double A=0;
-        double B=0;
->>>>>>> origin/master
         for(int i=0;i<steaming.length;i++){
             testing[i]=svm.addTesting(testing[i]);
             hasil[i] = svm.svmTesting(testing[i]);
@@ -778,19 +723,7 @@ public class MainFrame extends javax.swing.JFrame {
             row.add(hasil[i]);
             if(hasil[i].trim().equalsIgnoreCase("A")){
                 benar+=1;
-<<<<<<< HEAD
             }
-=======
-                //if(hasil[i].trim().equalsIgnoreCase("A"))
-                  //  TP++;
-                //if(hasil[i].trim().equalsIgnoreCase("B"))
-                  //  TN++;
-            }
-            if("S".equalsIgnoreCase(steaming[i][1].trim()))
-                A++;
-            else
-                B++;
->>>>>>> origin/master
         }
         BigDecimal predict = new BigDecimal((benar/steaming.length)*100).setScale(3, RoundingMode.HALF_EVEN);
         
